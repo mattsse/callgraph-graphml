@@ -8,7 +8,7 @@ Parse representation of a callgraph in graphml and reengineer the callgraph of t
 #### Installation
 
 ```bash
-mvn clean install
+./gradlew shadowJar
 
 ````
 
@@ -17,11 +17,16 @@ mvn clean install
 This parses the `graphml-file`, extracts the callgraph and writes it to a new file
 
 ````bash
-java -jar target/ais-callgraph-1.0.jar <graphml-file>
+java -jar build/libs/ais-callgraph-1.0.jar <graphml-file>
 ````
 
 *Additional flags*
 ```bash
- -o <path>            output file
- -f <format>          uses a specifc format, currently supported are           
+ -o <path>            write to specific file
+ -f <format>          uses a specifc format, currently supported are:
+                         - json (default)
+                         - xml
+                         - csv
+ -p                   print export format to console
+ --help, -h           print help          
 ```
