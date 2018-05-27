@@ -27,13 +27,14 @@ public class CallgraphLauncher {
         Option output = new Option("o", "output", true, "write to specific path");
         options.addOption(output);
 
-        Option format = new Option("f", "format", true, "uses a specifc format, currently supported are:\n" +
+        Option format = new Option("f", "format", true, "use a specifc format, currently supported are:\n" +
                 "                         - json (default)\n" +
                 "                         - xml\n" +
                 "                         - csv");
         options.addOption(format);
 
         Option print = new Option("p", "print", true, "print export format to console");
+        print.setArgs(0);
         options.addOption(print);
 
         CommandLineParser parser = new DefaultParser();
@@ -86,6 +87,22 @@ public class CallgraphLauncher {
 
         PouCallGraph graph = document.createCallgraph();
 
+        if (cmd.hasOption("print")) {
+            switch (exportFormat) {
+                case "json":
+                    System.out.println(CallgraphExporter.asJson(graph));
+                    break;
+                case "xml":
+                    System.out.println(CallgraphExporter.asXml(graph));
+                    break;
+                case "csv":
+                    System.out.println("Console printing is currently not supported for the CSV format");
+                    break;
+            }
+            System.exit(1);
+        }
+
+
         String outputFilePath = cmd.getOptionValue("output");
 
         if (outputFilePath != null) {
@@ -96,7 +113,8 @@ public class CallgraphLauncher {
         } else {
             SimpleDateFormat df = new SimpleDateFormat("YYYY.MM.DD.HHmmss");
             Path currentRelativePath = Paths.get("");
-            String parent = currentRelativePath.toAbsolutePath().toString();
+            String parent = currentRelativePath.toAbsolutePath()
+                                               .toString();
             do {
                 File f = new File(inputFilePath);
                 String fileName = f.getName();

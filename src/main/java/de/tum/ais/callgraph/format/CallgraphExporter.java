@@ -19,7 +19,8 @@ public class CallgraphExporter {
     public static String asXml(PouCallGraph graph) {
         XmlMapper xmlMapper = new XmlMapper();
         try {
-            return xmlMapper.writeValueAsString(graph);
+            return xmlMapper.writerWithDefaultPrettyPrinter()
+                            .writeValueAsString(graph);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
             return "";
@@ -28,14 +29,16 @@ public class CallgraphExporter {
 
     public static void toXmlFile(PouCallGraph graph, String file) throws IOException {
         XmlMapper xmlMapper = new XmlMapper();
-        xmlMapper.writeValue(new File(file), graph);
+        xmlMapper.writerWithDefaultPrettyPrinter()
+                 .writeValue(new File(file), graph);
     }
 
 
     public static String asJson(PouCallGraph graph) {
         ObjectMapper mapper = new ObjectMapper();
         try {
-            return mapper.writeValueAsString(graph);
+            return mapper.writerWithDefaultPrettyPrinter()
+                         .writeValueAsString(graph);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
             return "";
@@ -44,7 +47,8 @@ public class CallgraphExporter {
 
     public static void toJsonFile(PouCallGraph graph, String file) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(new File(file), graph);
+        mapper.writerWithDefaultPrettyPrinter()
+              .writeValue(new File(file), graph);
     }
 
 

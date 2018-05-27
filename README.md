@@ -17,13 +17,15 @@ Parse representation of a callgraph in graphml and reengineer the callgraph of t
 This parses the `graphml-file`, extracts the callgraph and writes it to a new file
 
 ````bash
-java -jar build/libs/ais-callgraph-1.0.jar <graphml-file>
+java -jar build/libs/ais-callgraph-1.0.jar -i <graphml-file>
 ````
 
-*Additional flags*
+*Flags*
+
 ```bash
+ -i <path>            input file path
  -o <path>            write to specific file
- -f <format>          uses a specifc format, currently supported are:
+ -f <format>          use a specifc format, currently supported are:
                          - json (default)
                          - xml
                          - csv
