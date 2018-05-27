@@ -121,8 +121,8 @@ public class CallgraphLauncher {
                     CallgraphExporter.toXmlFile(graph, outputFilePath);
                     break;
                 case "csv":
-                    System.out.println("Csv is currently not supported");
-                    //CallgraphExporter.toCsvFile(graph, outputFilePath);
+//                    System.out.println("Csv is currently not supported");
+                    CallgraphExporter.toCsvFile(graph, outputFilePath);
                     break;
 
             }

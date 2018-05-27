@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @JsonRootName(value = "callgraph")
 public class PouCallGraph {
@@ -34,4 +35,20 @@ public class PouCallGraph {
                                           .equals(id))
                             .findFirst();
     }
+
+
+    public List<PouCall> getAllCallees(PouElement caller) {
+        return getCalls().stream()
+                         .filter(p -> p.getCaller()
+                                       .equals(caller))
+                         .collect(Collectors.toList());
+    }
+
+    public List<PouCall> getAllCallers(PouElement callee) {
+        return getCalls().stream()
+                         .filter(p -> p.getCallee()
+                                       .equals(callee))
+                         .collect(Collectors.toList());
+    }
+
 }

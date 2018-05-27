@@ -11,25 +11,6 @@ import java.nio.file.Paths;
 
 public class CallgraphTest {
 
-
-    @Test
-    public void dummyTest() {
-        Assert.assertTrue(true);
-    }
-
-
-    @Test
-    public void loadGraphmlTest() throws IOException, XMLStreamException {
-        String path = "demo/demo.graphml";
-        Assert.assertTrue(Files.exists(Paths.get(path)));
-
-        CallgraphAnalyser analyser = new CallgraphAnalyser(path);
-
-        analyser.open();
-
-    }
-
-
     @Test
     public void parsePouInfoTest() {
         Vertex vertex = new Vertex();
