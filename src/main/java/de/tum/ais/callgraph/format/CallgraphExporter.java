@@ -58,12 +58,12 @@ public class CallgraphExporter {
             String calls = graph.getAllCallees(element)
                                 .stream()
                                 .map(m -> m.getCallee()
-                                           .getId() + "," + m.distance())
+                                           .getId() + " : " + m.distance())
                                 .collect(Collectors.joining(";"));
             String recieves = graph.getAllCallers(element)
                                    .stream()
                                    .map(m -> m.getCaller()
-                                              .getId() + "," + m.distance())
+                                              .getId() + " : " + m.distance())
                                    .collect(Collectors.joining(";"));
 
 
@@ -83,8 +83,8 @@ public class CallgraphExporter {
                                            .getWidth()));
             vals.add(String.valueOf(element.getGeometry()
                                            .getHeight()));
-            vals.add("\"" + calls + "\"");
-            vals.add("\"" + recieves + "\"");
+            vals.add(calls);
+            vals.add(recieves);
 
             CSVUtils.writeLine(writer, vals);
         }

@@ -20,9 +20,9 @@ public class CSVUtils {
     private static String followCVSformat(String value) {
 
         String result = value;
-//        if (result.contains("\"")) {
-//            result = result.replace("\"", "\"\"");
-//        }
+        if (result.contains("\"")) {
+            result = result.replace("\"", "\"\"");
+        }
         return result;
 
     }
