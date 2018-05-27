@@ -11,8 +11,8 @@ import java.util.regex.Pattern;
 
 public class Vertex {
 
-    public static final String FULL_INFO_REGEX = "(.+),\\s*(symbol name:\\s*(.+),)?\\s*block type:\\s+(\\w+),\\s+metric\\s+\\(?(\\w+)\\)?\\s+=\\s+(\\d+)";
-    public static final String MISSING_SOURCE_REGEX = "(.+),\\s*(symbol name:\\s*(.+),)?\\s*block type:\\s+(\\w+),\\s+source code not found\\s*";
+    public static final String FULL_INFO_REGEX = "(\\w+),\\s*(symbol name:\\s*(.+),)?\\s*block type:\\s+(\\w+),\\s+metric\\s+\\(?(\\w+)\\)?\\s+=\\s+(\\d+)";
+    public static final String MISSING_SOURCE_REGEX = "(\\w+),\\s*(symbol name:\\s*(.+),)?\\s*block type:\\s+(\\w+),\\s+source code not found\\s*";
 
     public static final Pattern FULL_INFO_PATTERN = Pattern.compile(FULL_INFO_REGEX, Pattern.MULTILINE);
     public static final Pattern MISSING_SOURCE_PATTERN = Pattern.compile(MISSING_SOURCE_REGEX, Pattern.MULTILINE);
@@ -70,7 +70,11 @@ public class Vertex {
 
         BiConsumer<PouInfo, Matcher> setCommon = (i, m) -> {
             i.setName(m.group(1));
-            i.setSymbolName(m.group(3));
+            String symbolName = m.group(3);
+            if (symbolName == null) {
+                symbolName = "N/A";
+            }
+            i.setSymbolName(symbolName);
             i.setBlockType(PouBlockType.fromIdentifier(m.group(4)));
         };
 

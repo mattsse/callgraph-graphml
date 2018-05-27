@@ -47,4 +47,21 @@ public class CallgraphTest {
         Assert.assertEquals(21.0, info.getMetricValue(),0);
 
     }
+    @Test
+    public void parseIncompletePouInfoTest() {
+        Vertex vertex = new Vertex();
+
+        vertex.getTexts()
+              .add("FC410, block type: FC, source code not found ");
+
+        PouInfo info = vertex.getPouInfo();
+        Assert.assertNotNull(info);
+
+        Assert.assertEquals("FC410", info.getName());
+        Assert.assertEquals("CYC_INT2", info.getSymbolName());
+        Assert.assertEquals(PouBlockType.FC, info.getBlockType());
+        Assert.assertEquals("N/A", info.getMetric());
+        Assert.assertEquals(-1.0, info.getMetricValue(),0);
+
+    }
 }
