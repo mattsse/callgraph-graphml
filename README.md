@@ -1,13 +1,17 @@
 # AIS Callgraph GraphML Analyser
 
-Parse representation of a callgraph in graphml and reengineer the callgraph of the plc project.
+Parse the representation of a callgraph in graphml and reengineer the callgraph of the underlying plc project.
 
 
 ### Usage
 
 #### Installation
 
+Compile the source files to an executeable jar file.
+
 ```bash
+# this downloads the gradle wrapper, so you don't need any gradle installation beforehand
+# requires a valid java 8 installation though
 ./gradlew shadowJar
 
 ````
@@ -20,7 +24,7 @@ This parses the `graphml-file`, extracts the callgraph and writes it to a new fi
 java -jar build/libs/ais-callgraph-1.0.jar -i <graphml-file>
 ````
 
-*Flags*
+*Commandline Flags*
 
 ```bash
  -i <path>            input file path
@@ -29,6 +33,11 @@ java -jar build/libs/ais-callgraph-1.0.jar -i <graphml-file>
                          - json (default)
                          - xml
                          - csv
- -p                   print export format to console
+ -p                   print callgraph format to console
  --help, -h           print help          
 ```
+
+
+#### Authors
+
+* **Matthias Seitz** Institute of Automation and Information Systems - TU Munich<br>Contact: [*matthias.seitz@tum.de*](mailto:matthias.seitz@tum.de)
