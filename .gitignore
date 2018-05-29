@@ -31,3 +31,4 @@ gradle-app.setting
 /callgraph-graphml.ipr
 
 out/
+*.DS_Store

@@ -2,10 +2,9 @@
 
 Parse the representation of a callgraph in graphml and reengineer the callgraph of the underlying plc project.
 
+## Usage
 
-### Usage
-
-#### Installation
+### Installation
 
 Compile the source files to an executeable jar file.
 
@@ -24,7 +23,7 @@ This parses the `graphml-file`, extracts the callgraph and writes it to a new fi
 java -jar build/libs/ais-callgraph-1.0.jar -i <graphml-file>
 ````
 
-*Commandline Flags*
+##### Commandline Flags
 
 ```bash
  -i <path>            input file path
@@ -34,9 +33,16 @@ java -jar build/libs/ais-callgraph-1.0.jar -i <graphml-file>
                          - xml
                          - csv
  -p                   print callgraph format to console
- --help, -h           print help          
+ --help, -h           print help
 ```
 
+##### Example
+
+Extract the callgraph from `demo/demo.graphml` as json to `callgraph.json`.
+
+```bash
+java -jar build/libs/ais-callgraph-1.0.jar -i demo/demo.graphml -o callgraph.json -f json
+```
 
 #### Authors
 
